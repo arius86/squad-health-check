@@ -1,0 +1,34 @@
+<template name="answer">
+    <div class="carousel slide" data-wrap="false" data-interval="false">
+        <div class="carousel-inner" role="listbox">
+            {{#each getNextCard}}
+            <div class="item{{#unless @index}} active{{/unless}}">
+                {{> card}}
+                <form class="answer-form">
+                    <div class="col-sm-4">
+                        <div class="card center-block">
+                            <label class="circle green"><input type="radio" name="state" value="1"></label>
+                            <label class="circle yellow"><input type="radio" name="state" value="0"></label>
+                            <label class="circle red"><input type="radio" name="state" value="-1"></label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="card center-block">
+                            <label class="trend">&uarr;<input type="radio" name="trend" value="1"></label>
+                            <label class="trend">&rarr;<input type="radio" name="trend" value="0"></label>
+                            <label class="trend">&darr;<input type="radio" name="trend" value="-1"></label>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <br><button type="submit" class="btn btn-success btn-lg center-block" id="next-card">Next</button>
+                    </div>
+                </form>
+            </div>
+            {{/each}}
+            <div class="item">
+                <h2>Done! Thank you! :)</h2>
+                <br>
+            </div>
+        </div>
+    </div>
+</template>

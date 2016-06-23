@@ -1,0 +1,89 @@
+/* CSS declarations go here */
+
+.card {
+    border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border: 1px solid #aaaaaa;
+    padding: 10px;
+    max-width: 250px;
+}
+
+.card.active {
+    border-color: #4cae4c;
+}
+
+.card.active h4 {
+    color: #3c763d;
+}
+
+.card input, .card textarea {
+    border: 0;
+    background: transparent;
+}
+
+.answer-link {
+    width: 100%;
+}
+
+.circle {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    border: 2px solid;
+    margin: 20px auto;
+    display: block;
+}
+
+.circle.green {
+    border-color: #4cae4c;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#24bf13+0,098902+100 */
+    background: #24bf13; /* Old browsers */
+    background: -moz-radial-gradient(center, ellipse cover,  #24bf13 0%, #098902 100%); /* FF3.6-15 */
+    background: -webkit-radial-gradient(center, ellipse cover,  #24bf13 0%,#098902 100%); /* Chrome10-25,Safari5.1-6 */
+    background: radial-gradient(ellipse at center,  #24bf13 0%,#098902 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#24bf13', endColorstr='#098902',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+.circle.yellow {
+    border-color: #eea236;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffd65e+0,febf04+100;Yellow+3D+%232 */
+    background: #ffd65e; /* Old browsers */
+    background: -moz-radial-gradient(center, ellipse cover,  #ffd65e 0%, #febf04 100%); /* FF3.6-15 */
+    background: -webkit-radial-gradient(center, ellipse cover,  #ffd65e 0%,#febf04 100%); /* Chrome10-25,Safari5.1-6 */
+    background: radial-gradient(ellipse at center,  #ffd65e 0%,#febf04 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffd65e', endColorstr='#febf04',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+.circle.red {
+    border-color: #ac2925;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ff3019+0,cf0404+100;Red+3D */
+    background: #ff3019; /* Old browsers */
+    background: -moz-radial-gradient(center, ellipse cover,  #ff3019 0%, #cf0404 100%); /* FF3.6-15 */
+    background: -webkit-radial-gradient(center, ellipse cover,  #ff3019 0%,#cf0404 100%); /* Chrome10-25,Safari5.1-6 */
+    background: radial-gradient(ellipse at center,  #ff3019 0%,#cf0404 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff3019', endColorstr='#cf0404',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+.circle:hover, .circle.selected {
+    border-color: #333333;
+}
+
+.circle input, .trend input {
+    visibility: hidden;
+}
+
+.trend {
+    font-size: 50px;
+    font-weight: bold;
+    width: 80px;
+    height: 80px;
+    margin: 20px auto;
+    display: block;
+    color: #999;
+    text-align: center;
+}
+
+.trend:hover, .trend.selected {
+    color: #000;
+}

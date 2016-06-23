@@ -1,0 +1,29 @@
+<template name="finalize">
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Open following link or scan qrcode to join:</h3>
+            <input type="text" class="answer-link input-lg" value="{{ getAnswerUrl }}" disabled="true">
+            <div class="qr-code"></div>
+        </div>
+        <div class="col-md-6">
+            <h3>Questions list</h3>
+            <ul class="list-group">
+                {{#each getActiveCards}}
+                    {{> question}}
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <br><button class="btn btn-warning btn-lg center-block" id="close-sqc">Close healtcheck</button>
+        </div>
+    </div>
+</template>
+
+<template name="question">
+    <li class="list-group-item row">
+        <div class="col-md-8">{{ title }}</div>
+        <div class="col-md-4">{{ countAnswers(_id) }} answers</div>
+    </li>
+</template>

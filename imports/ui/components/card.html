@@ -1,0 +1,23 @@
+<template name="card">
+    <div class="col-sm-4">
+        <div class="card{{#if active}} active{{/if}} center-block">
+            {{#if private}}
+            <span class="glyphicon glyphicon-trash pull-right"></span>
+            {{/if}}
+            <h4>
+                <span class="glyphicon glyphicon-{{#if active}}star{{else}}star-empty{{/if}}"></span>
+                {{ title }}
+            </h4>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    {{ pros }}
+                </li>
+                <li class="list-group-item">
+                    <span class="glyphicon glyphicon-minus"></span>
+                    {{ cons }}
+                </li>
+            </ul>
+        </div>
+    </div>
+</template>
