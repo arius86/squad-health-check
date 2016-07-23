@@ -14,13 +14,7 @@ Template.answer.events({
     'submit .answer-form'(event) {
         event.preventDefault();
 
-        Answers.insert({
-            checkId: FlowRouter.getParam('checkId'),
-            checkCardId: this._id,
-            state: this.state,
-            trend: this.trend,
-            createdAt: new Date()
-        });
+        Meteor.call('answers.insert', FlowRouter.getParam('checkId'), this._id, this.state, this.trend);
 
         $("input[name='state']").prop('checked', false);
         $("input[name='trend']").prop('checked', false);

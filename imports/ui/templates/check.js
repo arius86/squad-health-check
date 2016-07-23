@@ -1,3 +1,4 @@
+import { Meteor } from 'meteor/meteor'
 import { Checks } from '../../api/checks.js'
 import { CheckCards } from '../../api/checkCards.js'
 
@@ -15,13 +16,13 @@ Template.check.helpers({
 
 Template.check.events({
     'click .card'() {
-        CheckCards.update(this._id, {
-            $set: { active: !this.active }
-        });
+        if (this._id !== undefined) {
+            Meteor.call('checkCards.update', this._id, !this.active);
+        }
     },
     'click .card .glyphicon-trash'(event) {
         event.preventDefault();
-        CheckCards.remove(this._id);
+        Meteor.call('checkCards.remove', this._id);
     },
     'submit .new-card'(event) {
         event.preventDefault();
@@ -31,15 +32,7 @@ Template.check.events({
         const pros = target.pros.value;
         const cons = target.cons.value;
 
-        CheckCards.insert({
-            checkId: FlowRouter.getParam('checkId'),
-            title,
-            pros,
-            cons,
-            active: true,
-            private: true,
-            createdAt: new Date()
-        });
+        Meteor.call('checkCards.insert', FlowRouter.getParam('checkId'), title, pros, cons, true);
 
         // clear form
         target.title.value = '';
@@ -47,17 +40,6 @@ Template.check.events({
         target.cons.value = '';
     },
     'click #start-new-sqc'() {
-        var checkId = FlowRouter.getParam('checkId');
-        Checks.update(checkId, {
-            $set: {
-                open: true
-            }
-        }, (err) => {
-            if (err) {
-                console.log(err);
-            } else {
-                FlowRouter.go('finalize', { checkId: checkId });
-            }
-        });
+        Meteor.call('checks.update', FlowRouter.getParam('checkId'), true, 'finalize');
     }
 });

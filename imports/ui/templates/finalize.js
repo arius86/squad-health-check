@@ -1,4 +1,3 @@
-import { Checks } from '../../api/checks.js'
 import { CheckCards } from '../../api/checkCards.js'
 import { Answers } from '../../api/answers.js'
 
@@ -23,18 +22,7 @@ Template.finalize.helpers({
 
 Template.finalize.events({
     'click #close-sqc'() {
-        var checkId = FlowRouter.getParam('checkId');
-        Checks.update(checkId, {
-            $set: {
-                open: false
-            }
-        }, (err) => {
-            if (err) {
-                console.log(err);
-            } else {
-                FlowRouter.go('stats', { checkId: checkId });
-            }
-        });
+        Meteor.call('checks.update', FlowRouter.getParam('checkId'), false, 'stats');
     }
 });
 

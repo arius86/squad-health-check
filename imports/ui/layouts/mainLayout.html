@@ -1,6 +1,9 @@
 <template name="mainLayout">
     <div class="container">
-        <header><h1>Squad health check</h1></header>
+        <header>
+            <h1>Squad health check</h1>
+            {{> loginButtons}}
+        </header>
         <main>
             {{>Template.dynamic template=content}}
         </main>
