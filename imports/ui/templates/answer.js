@@ -1,5 +1,4 @@
 import { CheckCards } from '../../api/checkCards.js'
-import { Answers } from '../../api/answers.js'
 
 import './answer.html'
 import '../components/card.html'
@@ -14,8 +13,14 @@ Template.answer.events({
     'submit .answer-form'(event) {
         event.preventDefault();
 
-        Meteor.call('answers.insert', FlowRouter.getParam('checkId'), this._id, this.state, this.trend);
-
+        Meteor.call(
+            'answers.insert',
+            FlowRouter.getParam('checkId'),
+            this._id,
+            Number(this.state),
+            Number(this.trend)
+        );
+        
         $("input[name='state']").prop('checked', false);
         $("input[name='trend']").prop('checked', false);
         $('.carousel').carousel('next')

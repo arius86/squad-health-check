@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
+import { check } from 'meteor/check';
 
 export const Checks = new Mongo.Collection('checks');
 
@@ -31,6 +32,9 @@ Meteor.methods({
         if (!this.userId) {
             throw new Meteor.Error('not-authorized');
         }
+
+        check(open, Boolean);
+        check(action, String);
         
         Checks.update(checkId, {
             $set: {
