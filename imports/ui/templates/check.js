@@ -5,6 +5,11 @@ import { CheckCards } from '../../api/checkCards.js'
 import '../components/card.html'
 import './check.html'
 
+Template.check.onCreated(() => {
+    Meteor.subscribe('cards');
+    Meteor.subscribe('checkCards', FlowRouter.getParam('checkId'));
+});
+
 Template.check.helpers({
     activeCardsCounter() {
         return CheckCards.find({ checkId: FlowRouter.getParam('checkId'), active: true }).count();

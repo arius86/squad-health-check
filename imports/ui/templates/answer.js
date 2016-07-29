@@ -3,6 +3,10 @@ import { CheckCards } from '../../api/checkCards.js'
 import './answer.html'
 import '../components/card.html'
 
+Template.answer.onCreated(() => {
+    Meteor.subscribe('checkCards', FlowRouter.getParam('checkId'));
+});
+
 Template.answer.helpers({
     getNextCard() {
         return CheckCards.find({ checkId: FlowRouter.getParam('checkId'), active: true });

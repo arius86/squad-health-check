@@ -19,7 +19,6 @@ Meteor.methods({
                 console.log(err);
             } else {
                 const cards = Meteor.call('cards.getPublic');
-
                 for (var i in cards) {
                     Meteor.call('checkCards.insert', checkId, cards[i].title, cards[i].pros, cards[i].cons);
                 }

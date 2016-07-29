@@ -3,6 +3,10 @@ import { Answers } from '../../api/answers.js'
 
 import './stats.html'
 
+Template.stats.onCreated(() => {
+    Meteor.subscribe('answers', FlowRouter.getParam('checkId'));
+});
+
 Template.stats.helpers({
     cards() {
         return CheckCards.find({ checkId: FlowRouter.getParam('checkId'), active: true });

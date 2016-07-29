@@ -4,6 +4,13 @@ import { check } from 'meteor/check';
 
 export const CheckCards = new Mongo.Collection('checkCards');
 
+if (Meteor.isServer) {
+    // This code only runs on the server
+    Meteor.publish('checkCards', (checkId) => {
+        return CheckCards.find({ checkId });
+    });
+}
+
 Meteor.methods({
     'checkCards.insert'(checkId, title, pros, cons, private = false) {
         if (!this.userId) {

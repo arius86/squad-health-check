@@ -3,6 +3,14 @@ import { Answers } from '../../api/answers.js'
 
 import './finalize.html'
 
+Template.finalize.onCreated(() => {
+    Meteor.subscribe('checkCards', FlowRouter.getParam('checkId'));
+});
+
+Template.question.onCreated(() => {
+    Meteor.subscribe('answers', FlowRouter.getParam('checkId'));
+});
+
 Template.finalize.onRendered(() => {
     $('.qr-code').qrcode({
         "size": 100,
