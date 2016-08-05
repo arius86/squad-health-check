@@ -1,10 +1,19 @@
+import { Checks } from '../../api/checks'
 import { CheckCards } from '../../api/checkCards.js'
 
 import './answer.html'
 import '../components/card.html'
 
 Template.answer.onCreated(() => {
-    Meteor.subscribe('checkCards', FlowRouter.getParam('checkId'));
+    const checkId = FlowRouter.getParam('checkId');
+
+    Meteor.subscribe('checks', checkId, () => {
+        if (Checks.find({open: false}).count()) {
+            FlowRouter.go('home');
+        }
+    });
+
+    Meteor.subscribe('checkCards', checkId);
 });
 
 Template.answer.helpers({

@@ -5,7 +5,7 @@ import '../../ui/layouts/mainLayout.html';
 import '../../ui/layouts/notFound.html';
 
 import '../../ui/templates/home.js';
-import '../../ui/templates/check.js';
+import '../../ui/templates/prepare.js';
 import '../../ui/templates/finalize.js';
 import '../../ui/templates/answer.js';
 import '../../ui/templates/stats.js';
@@ -18,9 +18,9 @@ FlowRouter.route('/', {
 });
 
 FlowRouter.route('/prepare/:checkId', {
-    name: 'check',
+    name: 'prepare',
     action() {
-        BlazeLayout.render('mainLayout', { content: 'check' });
+        BlazeLayout.render('mainLayout', { content: 'prepare' });
     }
 });
 

@@ -8,6 +8,12 @@ Template.home.onCreated(() => {
 
 Template.home.events({
     'click #start-new-sqc'() {
-        Meteor.call('checks.insert');
+        Meteor.call('checks.insert', (error, result) => {
+            if (error) {
+                handleError(error);
+            } else if (result) {
+                FlowRouter.go('prepare', { checkId: result });
+            }
+        });
     }
 });

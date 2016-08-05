@@ -4,6 +4,7 @@ import { Answers } from '../../api/answers.js'
 import './stats.html'
 
 Template.stats.onCreated(() => {
+    Meteor.subscribe('checkCards', FlowRouter.getParam('checkId'));
     Meteor.subscribe('answers', FlowRouter.getParam('checkId'));
 });
 

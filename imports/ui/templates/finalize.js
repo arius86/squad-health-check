@@ -1,21 +1,31 @@
+import { Checks } from '../../api/checks.js'
 import { CheckCards } from '../../api/checkCards.js'
 import { Answers } from '../../api/answers.js'
 
 import './finalize.html'
 
-Template.finalize.onCreated(() => {
-    Meteor.subscribe('checkCards', FlowRouter.getParam('checkId'));
-});
+let generateAnswerUrl = (checkId) => {
+    return window.location.protocol + '//' + window.location.host + '/answer/' + checkId;
+}
 
-Template.question.onCreated(() => {
-    Meteor.subscribe('answers', FlowRouter.getParam('checkId'));
+Template.finalize.onCreated(() => {
+    const checkId = FlowRouter.getParam('checkId');
+
+    Meteor.subscribe('checks', checkId, () => {
+        if (Checks.find({ finalized: true }).count()) {
+            FlowRouter.go('home');
+        }
+    });
+
+    Meteor.subscribe('checkCards', checkId);
+    Meteor.subscribe('answers', checkId);
 });
 
 Template.finalize.onRendered(() => {
     $('.qr-code').qrcode({
         "size": 100,
         "color": "#000",
-        "text": window.location.protocol + '//' + window.location.host + '/answer/' + FlowRouter.getParam('checkId')
+        "text":  generateAnswerUrl(FlowRouter.getParam('checkId'))
     });
 });
 
@@ -24,13 +34,20 @@ Template.finalize.helpers({
         return CheckCards.find({ checkId: FlowRouter.getParam('checkId'), active: true });
     },
     getAnswerUrl() {
-        return window.location.protocol + '//' + window.location.host + '/answer/' + FlowRouter.getParam('checkId');
+        return generateAnswerUrl(FlowRouter.getParam('checkId'))
     }
 });
 
 Template.finalize.events({
     'click #close-sqc'() {
-        Meteor.call('checks.update', FlowRouter.getParam('checkId'), false, 'stats');
+        const checkId = FlowRouter.getParam('checkId');
+        Meteor.call('checks.finalize', checkId, (error) => {
+            if (error) {
+                handleError(error);
+            } else {
+                FlowRouter.go('stats', { checkId });
+            }
+        });
     }
 });
 

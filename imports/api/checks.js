@@ -4,46 +4,63 @@ import { check } from 'meteor/check';
 
 export const Checks = new Mongo.Collection('checks');
 
+if (Meteor.isServer) {
+    // This code only runs on the server
+    Meteor.publish('checks', (checkId) => {
+        return Checks.find({ _id: checkId });
+    });
+}
+
 Meteor.methods({
     'checks.insert'() {
         if (!this.userId) {
             throw new Meteor.Error('not-authorized');
         }
 
-        Checks.insert({
+        return Checks.insert({
             open: false,
+            finalized: false,
             createdAt: new Date(), // current time
             owner: this.userId
         }, (err, checkId) => {
             if (err) {
-                console.log(err);
+                throw new Meteor.Error(err);
             } else {
                 const cards = Meteor.call('cards.getPublic');
                 for (var i in cards) {
                     Meteor.call('checkCards.insert', checkId, cards[i].title, cards[i].pros, cards[i].cons);
                 }
-
-                FlowRouter.go('check', { checkId: checkId });
             }
         });
     },
-    'checks.update'(checkId, open, action) {
+    'checks.open'(checkId) {
         if (!this.userId) {
             throw new Meteor.Error('not-authorized');
         }
 
-        check(open, Boolean);
-        check(action, String);
-        
-        Checks.update(checkId, {
+        return Checks.update(checkId, {
             $set: {
-                open
+                open: true
             }
         }, (err) => {
             if (err) {
-                console.log(err);
-            } else {
-                FlowRouter.go(action, { checkId: checkId });
+                throw new Meteor.Error(err);
+            }
+        });
+    },
+    'checks.finalize'(checkId) {
+        if (!this.userId) {
+            throw new Meteor.Error('not-authorized');
+        }
+
+        return Checks.update(checkId, {
+            $set: {
+                open: false,
+                finalized: true
+            }
+        }, (err) => {
+            if (err) {
+                throw new Meteor.Error(err);
             }
         });
     }

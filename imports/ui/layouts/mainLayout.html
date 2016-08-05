@@ -1,12 +1,20 @@
 <template name="mainLayout">
     <div class="container">
-        <header>
-            <h1>Squad health check</h1>
-            {{> loginButtons}}
-        </header>
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">Squad health check</a>
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>{{> loginButtons}}</li>
+                </ul>
+            </div>
+        </nav>
         <main>
             {{>Template.dynamic template=content}}
         </main>
-        <footer>Check source on <a href="https://github.com/arius86/squad-health-check" target="_blank">github</a></footer>
+        <footer>
+            Check source on <a href="https://github.com/arius86/squad-health-check" target="_blank">github</a>
+        </footer>
     </div>
 </template>

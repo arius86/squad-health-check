@@ -1,14 +1,16 @@
-<template name="check">
+<template name="prepare">
     <div class="row">
         <div class="col-md-12">
-            <h3>Please choose your cards ({{activeCardsCounter}}/10)</h3>
+            <h3 class="{{getCounterCssClass}}">
+                Please choose your cards ({{activeCardsCounter}}/10)
+            </h3>
         </div>
     </div>
     <div class="row">
         {{#each checkCards}}
             {{> card}}
         {{/each}}
-        <div class="col-xs-4">
+        <div class="col-sm-4">
             <div class="card center-block">
                 <form class="new-card">
                     <h4><input type="text" name="title" placeholder="new card"></h4>

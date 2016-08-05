@@ -1,20 +1,37 @@
 /* CSS declarations go here */
+body {
+    padding-top: 70px;
+}
+
+footer {
+    padding-top: 9px;
+    margin: 20px 0;
+    border-top: 1px solid #eee;
+    text-align: center;
+    text-size: 90%;
+}
+
+a {
+    color: #ac2925;
+}
+
+a:hover {
+    color: #3a3a3a;
+}
 
 .card {
     border-radius: 10px 10px 10px 10px;
     -moz-border-radius: 10px 10px 10px 10px;
     -webkit-border-radius: 10px 10px 10px 10px;
-    border: 1px solid #aaaaaa;
     padding: 10px;
+    margin: 10px;
     max-width: 250px;
-}
-
-.card.active {
-    border-color: #4cae4c;
+    background: #f5f5f5;
+    border-bottom: 5px solid #e3e3e3;
 }
 
 .card.active h4 {
-    color: #3c763d;
+    color: #4cae4c;
 }
 
 .card input, .card textarea {
@@ -86,4 +103,29 @@
 
 .trend:hover, .trend.selected {
     color: #000;
+}
+
+h3.warning {
+    color: #f0ad4e;
+}
+
+.qr-code {
+    margin-top: 20px;
+    background: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+#login-buttons {
+    padding: 20px 50px 0 0;
+}
+
+#login-dropdown-list {
+    left: auto;
+    right: 6px;
+}
+
+.btn {
+    border-radius: 3px !important;
+    border-bottom-width: 5px !important;
 }
