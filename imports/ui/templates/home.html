@@ -1,7 +1,17 @@
 <template name="home">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-{{#if currentUser}}8{{else}}12{{/if}}">
             <button class="btn btn-success btn-lg center-block" id="start-new-sqc">Start new squad health check!</button>
         </div>
+        {{#if currentUser}}
+        <div class="col-md-4">
+            <h3>Recently finalized</h3>
+            <ul class="list-group">
+                {{#each checks}}
+                <li class="list-group-item"><a href="{{ getStatsUrl _id }}" target="_blank">{{ createdAt }}</a></li>
+                {{/each}}
+            </ul>
+        </div>
+        {{/if}}
     </div>
 </template>

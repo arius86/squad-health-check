@@ -11,8 +11,8 @@ let generateAnswerUrl = (checkId) => {
 Template.finalize.onCreated(() => {
     const checkId = FlowRouter.getParam('checkId');
 
-    Meteor.subscribe('checks', checkId, () => {
-        if (Checks.find({ finalized: true }).count()) {
+    Meteor.subscribe('check', checkId, () => {
+        if (Checks.find({ _id: checkId, finalized: true }).count()) {
             FlowRouter.go('home');
         }
     });

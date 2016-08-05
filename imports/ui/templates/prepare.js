@@ -14,8 +14,8 @@ let activeCardsCount = () => {
 Template.prepare.onCreated(() => {
     const checkId = FlowRouter.getParam('checkId');
 
-    Meteor.subscribe('checks', checkId, () => {
-        if (Checks.find({ $or: [{ open: true}, { finalized: true }] }).count()) {
+    Meteor.subscribe('check', checkId, () => {
+        if (Checks.find({ _id: checkId, $or: [{ open: true}, { finalized: true }] }).count()) {
             FlowRouter.go('home');
         }
     });

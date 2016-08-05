@@ -5,9 +5,12 @@ import { check } from 'meteor/check';
 export const Checks = new Mongo.Collection('checks');
 
 if (Meteor.isServer) {
-    // This code only runs on the server
-    Meteor.publish('checks', (checkId) => {
+    Meteor.publish('check', (checkId) => {
         return Checks.find({ _id: checkId });
+    });
+    
+    Meteor.publish('checks', (userId) => {
+        return Checks.find({ owner: userId });
     });
 }
 

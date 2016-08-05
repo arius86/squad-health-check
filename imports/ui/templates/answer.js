@@ -7,8 +7,8 @@ import '../components/card.html'
 Template.answer.onCreated(() => {
     const checkId = FlowRouter.getParam('checkId');
 
-    Meteor.subscribe('checks', checkId, () => {
-        if (Checks.find({open: false}).count()) {
+    Meteor.subscribe('check', checkId, () => {
+        if (Checks.find({ _id: checkId, open: false }).count()) {
             FlowRouter.go('home');
         }
     });
