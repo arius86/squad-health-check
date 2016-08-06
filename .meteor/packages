@@ -22,4 +22,6 @@ twbs:bootstrap
 steeve:jquery-qrcode
 accounts-ui@1.1.9
 accounts-password@1.2.12
-ovcharik:alertify
+momentjs:moment
+mrt:flash-messages
+theduke:bootstrap-modal-prompt

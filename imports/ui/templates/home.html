@@ -8,7 +8,10 @@
             <h3>Recently finalized</h3>
             <ul class="list-group">
                 {{#each checks}}
-                <li class="list-group-item"><a href="{{ getStatsUrl _id }}" target="_blank">{{ createdAt }}</a></li>
+                <li class="list-group-item">
+                    <a href="{{ getStatsUrl _id }}" target="_blank">{{ name }}</a>
+                    <small>{{ parseIsoDate createdAt }}</small>
+                </li>
                 {{/each}}
             </ul>
         </div>

@@ -109,6 +109,10 @@ h3.warning {
     color: #f0ad4e;
 }
 
+h3 input {
+    border: 0;
+}
+
 .qr-code {
     margin-top: 20px;
     background: #fff;

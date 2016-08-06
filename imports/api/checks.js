@@ -8,9 +8,12 @@ if (Meteor.isServer) {
     Meteor.publish('check', (checkId) => {
         return Checks.find({ _id: checkId });
     });
-    
+
     Meteor.publish('checks', (userId) => {
-        return Checks.find({ owner: userId });
+        if (userId) {
+            return Checks.find({ owner: userId });    
+        }
+        return [];
     });
 }
 
@@ -21,6 +24,7 @@ Meteor.methods({
         }
 
         return Checks.insert({
+            name: 'My Squad Health Check',
             open: false,
             finalized: false,
             createdAt: new Date(), // current time
@@ -60,6 +64,21 @@ Meteor.methods({
             $set: {
                 open: false,
                 finalized: true
+            }
+        }, (err) => {
+            if (err) {
+                throw new Meteor.Error(err);
+            }
+        });
+    },
+    'checks.updateName'(checkId, name) {
+        if (!this.userId) {
+            throw new Meteor.Error('not-authorized');
+        }
+
+        return Checks.update(checkId, {
+            $set: {
+                name
             }
         }, (err) => {
             if (err) {

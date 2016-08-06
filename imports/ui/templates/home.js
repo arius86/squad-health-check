@@ -10,6 +10,9 @@ Template.home.helpers({
     checks() {
         return Checks.find({ owner: Meteor.userId(), finalized: true }, { sort: { createdAt: -1 }, limit: 5 });
     },
+    parseIsoDate(isoDate) {
+        return moment(isoDate).fromNow();
+    },
     getStatsUrl(checkId) {
        return FlowRouter.path('stats', { checkId }); 
     }

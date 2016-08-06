@@ -15,7 +15,12 @@ Template.prepare.onCreated(() => {
     const checkId = FlowRouter.getParam('checkId');
 
     Meteor.subscribe('check', checkId, () => {
-        if (Checks.find({ _id: checkId, $or: [{ open: true}, { finalized: true }] }).count()) {
+        if (Checks.find({ _id: checkId, $or: [
+                { owner: { $ne: Meteor.userId() }},
+                { open: true},
+                { finalized: true }
+            ] }).count())
+        {
             FlowRouter.go('home');
         }
     });
@@ -33,6 +38,9 @@ Template.prepare.helpers({
     },
     checkCards() {
         return CheckCards.find({ checkId: FlowRouter.getParam('checkId') });
+    },
+    check() {
+        return Checks.findOne({ _id: FlowRouter.getParam('checkId') });
     }
 });
 
@@ -74,9 +82,10 @@ Template.prepare.events({
         };
 
         if (activeCardsCount() !== optimalNbOfCards) {
-            alertify.confirm(
-                'You have ' + activeCardsCount() + ' from optimal numbe of ' + optimalNbOfCards + ' cards selected. Are you sure?',
-                (e) => {
+            BootstrapModalPrompt.prompt({
+                title: 'Are you sure?',
+                content: 'You have ' + activeCardsCount() + ' from optimal number of ' + optimalNbOfCards + ' cards selected.'
+                }, (e) => {
                     if (e) {
                         forwardCall();
                     }
@@ -85,5 +94,15 @@ Template.prepare.events({
         } else {
             forwardCall();
         }
+    },
+    'submit .check-name'(event) {
+        event.preventDefault();
+        Meteor.call('checks.updateName', FlowRouter.getParam('checkId'), event.target.name.value, (error) => {
+            if (error) {
+                handleError(error);
+            } else {
+                showInfo('Squad health check name saved.')
+            }
+        });
     }
 });

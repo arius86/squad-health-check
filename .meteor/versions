@@ -52,13 +52,15 @@ mobile-experience@1.0.4
 mobile-status-bar@1.0.12
 modules@0.7.5
 modules-runtime@0.7.5
+momentjs:moment@2.14.4
 mongo@1.1.10
 mongo-id@1.0.5
+mongo-livedata@1.0.12
+mrt:flash-messages@1.0.1
 npm-bcrypt@0.8.7
 npm-mongo@1.5.45
 observe-sequence@1.0.12
 ordered-dict@1.0.8
-ovcharik:alertify@0.3.11
 promise@0.8.3
 random@1.0.10
 rate-limit@1.0.5
@@ -78,6 +80,7 @@ standard-minifier-js@1.1.8
 steeve:jquery-qrcode@0.2.2
 templating@1.1.14
 templating-tools@1.0.4
+theduke:bootstrap-modal-prompt@0.0.2
 tracker@1.1.0
 twbs:bootstrap@3.3.6
 ui@1.0.11

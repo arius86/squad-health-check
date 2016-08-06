@@ -1,11 +1,21 @@
 import { CheckCards } from '../../api/checkCards.js'
+import { Checks } from '../../api/checks.js'
 import { Answers } from '../../api/answers.js'
 
 import './stats.html'
 
 Template.stats.onCreated(() => {
-    Meteor.subscribe('checkCards', FlowRouter.getParam('checkId'));
-    Meteor.subscribe('answers', FlowRouter.getParam('checkId'));
+    const checkId = FlowRouter.getParam('checkId');
+
+    Meteor.subscribe('check', checkId, () => {
+        if (!Checks.find({ _id: checkId, owner: Meteor.userId() }).count())
+        {
+            FlowRouter.go('home');
+        }
+    });
+    
+    Meteor.subscribe('checkCards', checkId);
+    Meteor.subscribe('answers', checkId);
 });
 
 Template.stats.helpers({

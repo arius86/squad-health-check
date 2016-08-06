@@ -1,9 +1,15 @@
 <template name="prepare">
     <div class="row">
         <div class="col-md-12">
-            <h3 class="{{getCounterCssClass}}">
-                Please choose your cards ({{activeCardsCounter}}/10)
-            </h3>
+            <form class="check-name">
+                <h3 class="{{getCounterCssClass}}">
+                    <label for="check-name-input">
+                        <small><i class="glyphicon glyphicon-pencil"></i></small>
+                    </label>
+                    <input id="check-name-input" name="name" value="{{ check.name }}" />
+                    ({{activeCardsCounter}}/10)
+                </h3>
+            </form>
         </div>
     </div>
     <div class="row">
