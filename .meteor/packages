@@ -25,3 +25,6 @@ accounts-password@1.2.12
 momentjs:moment
 mrt:flash-messages
 theduke:bootstrap-modal-prompt
+accounts-facebook
+accounts-github
+accounts-google

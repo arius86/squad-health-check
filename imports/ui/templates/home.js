@@ -3,12 +3,12 @@ import { Checks } from '../../api/checks'
 import './home.html'
 
 Template.home.onCreated(() => {
-    Meteor.subscribe('checks', Meteor.userId());
+    Meteor.subscribe('checks');
 });
 
 Template.home.helpers({
     checks() {
-        return Checks.find({ owner: Meteor.userId(), finalized: true }, { sort: { createdAt: -1 }, limit: 5 });
+        return Checks.find({ finalized: true }, { sort: { createdAt: -1 }, limit: 15 });
     },
     parseIsoDate(isoDate) {
         return moment(isoDate).fromNow();

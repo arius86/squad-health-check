@@ -1,20 +1,52 @@
 <template name="home">
     <div class="row">
         <div class="col-md-{{#if currentUser}}8{{else}}12{{/if}}">
+            <div class="jumbotron">
+                <h2>What is the squad health check model?</h2>
+                <p>
+                    If you are just looking for ideas how to measure your team health and you didn't hear about squad health
+                    check before, you should read <a href="https://labs.spotify.com/2014/09/16/squad-health-check-model/"
+                                                      target="_blank">this great article written by Henrik Kniberg</a>.
+                </p>
+            </div>
+            <h3>Sooo... What is this tool for?</h3>
+            <p>
+                It's just for making your life easier - especially if you are a part of remote team. You can run your
+                team health check online, completely free.
+            </p>
+            <p>
+                If you are a scrum master for many teams, this tool is designed to make suqad healt check as fast as
+                possible. And you can check the stats later!
+            </p>
+            <h3>Ok, but how?</h3>
+            <p>
+                Just start the new squad health check by clicking the button below and selecting questions that you want
+                to ask or writing your own and then going to the next step. Then you will see the page with answer link
+                and QR-code to scan that you can copy/share/show on your TV screen. On the same page you will see how
+                many people answered the questions so far. After clicking "Close squad health check" button you will be
+                redirected to last page - with the results. Have fun!
+            </p>
+            <br/>
             <button class="btn btn-success btn-lg center-block" id="start-new-sqc">Start new squad health check!</button>
         </div>
-        {{#if currentUser}}
-        <div class="col-md-4">
-            <h3>Recently finalized</h3>
-            <ul class="list-group">
-                {{#each checks}}
-                <li class="list-group-item">
-                    <a href="{{ getStatsUrl _id }}" target="_blank">{{ name }}</a>
-                    <small>{{ parseIsoDate createdAt }}</small>
-                </li>
-                {{/each}}
-            </ul>
-        </div>
+        {{#if loggingIn}}
+            <div class="col-md-4">
+                <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...
+            </div>
+        {{else}}
+            {{#if currentUser}}
+            <div class="col-md-4">
+                <h3>Recently finalized</h3>
+                <ul class="list-group">
+                    {{#each checks}}
+                    <li class="list-group-item">
+                        <a href="{{ getStatsUrl _id }}" target="_blank">{{ name }}</a>
+                        <small>{{ parseIsoDate createdAt }}</small>
+                    </li>
+                    {{/each}}
+                </ul>
+            </div>
+            {{/if}}
         {{/if}}
     </div>
 </template>

@@ -9,9 +9,9 @@ if (Meteor.isServer) {
         return Checks.find({ _id: checkId });
     });
 
-    Meteor.publish('checks', (userId) => {
-        if (userId) {
-            return Checks.find({ owner: userId });    
+    Meteor.publish('checks', function() {
+        if (this.userId) {
+            return Checks.find({ owner: this.userId });
         }
         return [];
     });
