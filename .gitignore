@@ -1,7 +1,6 @@
 node_modules/
 .idea/
-
+.deploy/
 .meteor/local
 .meteor/meteorite
 
-settings.json
