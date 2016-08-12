@@ -36,7 +36,8 @@ Template.answer.events({
         
         $("input[name='state']").prop('checked', false);
         $("input[name='trend']").prop('checked', false);
-        $('.carousel').carousel('next')
+        $('html, body').animate({ scrollTop: 0 }, 'fast');
+        $('.carousel').carousel('next');
     },
 
     'change input[name=state]'() {
