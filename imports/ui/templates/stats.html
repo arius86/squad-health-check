@@ -6,6 +6,7 @@
                 <thead>
                     <tr>
                         <th>Question</th>
+                        <th>Overall</th>
                         <th colspan="3">State</th>
                         <th colspan="3">Trend</th>
                     </tr>
@@ -14,6 +15,7 @@
                 {{#each cards}}
                     <tr>
                         <th>{{ title }}</th>
+                        <td><span class="overall {{ getOverallIconClass _id }}"></span></td>
                         <td class="success">{{ countStateByValue _id 1 }}</td>
                         <td class="warning">{{ countStateByValue _id 0 }}</td>
                         <td class="danger">{{ countStateByValue _id -1 }}</td>

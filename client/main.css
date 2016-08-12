@@ -147,3 +147,64 @@ h3 input {
 .navbar-right {
     float: right;
 }
+
+table.table th, table.table td {
+    vertical-align: middle !important;
+}
+
+span.overall {
+    display: block;
+    height: 50px;
+    width: 50px;
+}
+
+span.overall-1-0 {
+    background-image: url('/shc.png');
+    background-position: 0px -102px;
+    width: 48px;
+    height: 48px;
+}
+
+span.overall-1-1 {
+    background-image: url('/shc.png');
+}
+
+span.overall-1--1 {
+    background-image: url('/shc.png');
+    background-position: 0px -52px;
+}
+
+span.overall-0-0 {
+    background-image: url('/shc.png');
+    background-position: -50px -102px;
+    width: 48px;
+    height: 48px;
+}
+
+span.overall-0-1 {
+    background-image: url('/shc.png');
+    background-position: -50px 0px;
+}
+
+span.overall-0--1 {
+    background-image: url('/shc.png');
+    background-position: -50px -52px;
+}
+
+
+span.overall--1-0 {
+    background-image: url('/shc.png');
+    background-position: -100px -102px;
+    width: 48px;
+    height: 48px;
+}
+
+span.overall--1-1 {
+    background-image: url('/shc.png');
+    background-position: -100px 0px;
+}
+
+span.overall--1--1 {
+    background-image: url('/shc.png');
+    background-position: -100px -52px;
+}

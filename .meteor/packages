@@ -29,3 +29,5 @@ accounts-facebook
 accounts-github
 accounts-google
 okgrow:analytics
+meteorhacks:aggregate
+simple:reactive-method
