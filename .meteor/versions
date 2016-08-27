@@ -87,6 +87,7 @@ sha@1.0.8
 simple:reactive-method@1.0.2
 spacebars@1.0.12
 spacebars-compiler@1.0.12
+spiderable@1.0.13
 srp@1.0.9
 standard-minifier-css@1.1.8
 standard-minifier-js@1.1.8
