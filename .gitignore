@@ -3,4 +3,4 @@ node_modules/
 .deploy/
 .meteor/local
 .meteor/meteorite
-google*.html
+public/google*.html
