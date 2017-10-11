@@ -9,6 +9,7 @@ import '../../ui/templates/prepare.js';
 import '../../ui/templates/finalize.js';
 import '../../ui/templates/answer.js';
 import '../../ui/templates/stats.js';
+import '../../ui/templates/admin.js';
 
 FlowRouter.route('/', {
     name: 'home',
@@ -42,6 +43,18 @@ FlowRouter.route('/stats/:checkId', {
     name: 'stats',
     action() {
         BlazeLayout.render('mainLayout', { content: 'stats' });
+    }
+});
+
+FlowRouter.route('/backoffice', {
+    name: 'admin',
+    triggersEnter: [(context, redirect) => {
+        if (!Meteor.userId() /* || !Roles.userIsInRole(Meteor.userId(), 'admin')*/) {
+            redirect('/');
+        }
+    }],
+    action() {
+        BlazeLayout.render('mainLayout', { content: 'admin' });
     }
 });
 

@@ -9,3 +9,4 @@ this.handleError = (error) => {
 this.showInfo = (message) => {
     FlashMessages.sendInfo(message);
 };
+
