@@ -27,7 +27,12 @@
             {{/each}}
             <div class="item">
                 <h2>Done! Thank you! :)</h2>
-                <br>
+                <h3>Your answers:</h3>
+                <ol>
+                    {{#each getAnswers}}
+                    <li><strong>{{ this.title }}:</strong> <span class="overall overall-{{ this.state }}-{{ this.trend }}"></span></li>
+                    {{/each}}
+                </ol>
             </div>
         </div>
     </div>

@@ -6,6 +6,7 @@ import '../components/card.html'
 
 Template.answer.onCreated(() => {
     const checkId = FlowRouter.getParam('checkId');
+    Template.instance().answers = new ReactiveVar([]);
 
     Meteor.subscribe('check', checkId, () => {
         if (Checks.find({ _id: checkId, open: false }).count()) {
@@ -19,6 +20,10 @@ Template.answer.onCreated(() => {
 Template.answer.helpers({
     getNextCard() {
         return CheckCards.find({ checkId: FlowRouter.getParam('checkId'), active: true });
+    },
+
+    getAnswers() {
+        return Template.instance().answers.get();
     }
 });
 
@@ -33,6 +38,16 @@ Template.answer.events({
             Number(this.state),
             Number(this.trend)
         );
+
+        let answers = Template.instance().answers.get();
+
+        answers.push({
+            'title': this.title,
+            'state': this.state,
+            'trend': this.trend
+        });
+
+        Template.instance().answers.set(answers);
         
         $("input[name='state']").prop('checked', false);
         $("input[name='trend']").prop('checked', false);
