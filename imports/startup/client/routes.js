@@ -9,6 +9,7 @@ import '../../ui/templates/prepare.js';
 import '../../ui/templates/finalize.js';
 import '../../ui/templates/answer.js';
 import '../../ui/templates/stats.js';
+import '../../ui/templates/privacy.js';
 
 FlowRouter.route('/', {
     name: 'home',
@@ -42,6 +43,13 @@ FlowRouter.route('/stats/:checkId', {
     name: 'stats',
     action() {
         BlazeLayout.render('mainLayout', { content: 'stats' });
+    }
+});
+
+FlowRouter.route('/privacy', {
+    name: 'privacy',
+    action() {
+        BlazeLayout.render('mainLayout', { content: 'privacy'});
     }
 });
 
