@@ -208,3 +208,8 @@ span.overall--1--1 {
     background-image: url('/shc.png');
     background-position: -100px -52px;
 }
+
+.cookie-policy {
+  background-color: #333;
+  text-transform: none !important;
+}
