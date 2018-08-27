@@ -43,8 +43,8 @@ Template.answer.events({
 
         answers.push({
             'title': this.title,
-            'state': this.state,
-            'trend': this.trend
+            'state': Number(this.state),
+            'trend': Number(this.trend)
         });
 
         Template.instance().answers.set(answers);
