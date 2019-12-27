@@ -8,21 +8,6 @@ if (Meteor.isServer) {
     Meteor.publish('answers', (checkId) => {
         return Answers.find({ checkId });
     });
-
-    Meteor.methods({
-        getAnswersTrendData(checkId, cardId) {
-            return Answers.aggregate([
-                { $match: { checkId: checkId, checkCardId: cardId } },
-                { $group: { _id: '$trend', count: { $sum: 1 } } }
-            ]);
-        },
-        getAnswersStateData(checkId, cardId) {
-            return Answers.aggregate([
-                { $match: { checkId: checkId, checkCardId: cardId } },
-                { $group: { _id: '$state', count: { $sum: 1 } } }
-            ]);
-        }
-    });
 }
 
 Meteor.methods({

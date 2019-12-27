@@ -4,18 +4,19 @@ import { Answers } from '../../api/answers.js'
 
 import './stats.html'
 
-let returnMaxFromResultSet = (resultSet) => {
+let returnMax = (data) => {
     let max = {
-        _id: null,
+        key: null,
         count: null
     };
 
-    if (resultSet) {
-        for (var i = 0; i < resultSet.length; i++) {
-            if (max.count < resultSet[i].count) {
-                max = resultSet[i];
-            }
-        }
+    if (data) {
+       for (let key in data) {
+           if (data[key] > max.count) {
+               max.key = key;
+               max.count = data[key];
+           }
+       }
     }
 
     return max;
@@ -30,7 +31,7 @@ Template.stats.onCreated(() => {
             FlowRouter.go('home');
         }
     });
-    
+
     Meteor.subscribe('checkCards', checkId);
     Meteor.subscribe('answers', checkId);
 });
@@ -49,12 +50,18 @@ Template.stats.helpers({
     },
 
     getOverallIconClass(cardId) {
-        const states = ReactiveMethod.call('getAnswersStateData', FlowRouter.getParam('checkId'), cardId);
-        const trends = ReactiveMethod.call('getAnswersTrendData', FlowRouter.getParam('checkId'), cardId);
+        const answers = Answers.find({ checkId: FlowRouter.getParam('checkId'), checkCardId: cardId });
+        let states = { "-1": 0, "0": 0, "1": 0 };
+        let trends = { "-1": 0, "0": 0, "1": 0 };
 
-        let state = returnMaxFromResultSet(states);
-        let trend = returnMaxFromResultSet(trends);
+        answers.forEach(function (answer) {
+            states[answer.state]++;
+            trends[answer.trend]++;
+        });
 
-        return 'overall-' + state._id + '-' + trend._id;
+        let state = returnMax(states);
+        let trend = returnMax(trends);
+
+        return 'overall-' + state.key + '-' + trend.key;
     }
 });
